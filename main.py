@@ -3,11 +3,20 @@ import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
 import toml
-
+from src.classes.neural_network import NeuralNetwork
+from src.classes.read_config import read_config 
+#from src.classes.activation_factory import Activation_factory
+#from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 
 # Final Validation Accuracy 88.83%
 # The best working code at the moment without orthonormal U and V
 # With config read function
+
+config_settings, config_layers = read_config('our_config.toml')
+
+lr = config_settings.get('learningRate', 0.0001)
+batchSize = config_settings.get('batchSize', 64)
+num_epochs = config_settings.get('numEpochs', 10)
 
 # Load MNIST dataset
 transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
