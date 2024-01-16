@@ -1,13 +1,13 @@
 import torch
 import torch.nn as nn
 
-from layers import Dense_layer, Vanilla_low_rank_layer
-from activation_factory import Activation_factory
+from .layers import Dense_layer, Vanilla_low_rank_layer
+from .activation_factory import Activation_factory
 
 
 
 
-# Define your neural network architecture. Again, you can add your own functions
+# Defining the neural network architecture
 class NeuralNetwork(nn.Module):
     def __init__(self, layer_configs, lr=0.0001):
         """
@@ -19,7 +19,7 @@ class NeuralNetwork(nn.Module):
         """
         super(NeuralNetwork, self).__init__()
         self._flatten = nn.Flatten()   # Resize input
-        self._lr = lr                # Default value for learingrate 
+        self._lr = lr                  # Default value for learingrate 
 
         # Dictionary of activation functions (an instance)
         activate_factory = Activation_factory()
@@ -53,7 +53,7 @@ class NeuralNetwork(nn.Module):
         """
         Z = self._flatten(X)
 
-        # TODO: Go over and evaluate all layers in the list self.layers 
+        # Go over and evaluate all layers in the list self.layers 
         for layer in self._layers:
             Z = layer(Z)
         
@@ -62,6 +62,3 @@ class NeuralNetwork(nn.Module):
     def update(self):
         for layer in self._layers:
             layer.update(self._lr)
-        
-
-net = NeuralNetwork()
