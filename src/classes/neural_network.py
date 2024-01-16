@@ -1,8 +1,9 @@
 import torch
 import torch.nn as nn
 
-from activation_factory import Activation_factory
 from layers import Dense_layer, Vanilla_low_rank_layer
+from activation_factory import Activation_factory
+
 
 
 
@@ -21,10 +22,8 @@ class NeuralNetwork(nn.Module):
         self._lr = lr                # Default value for learingrate 
 
         # Dictionary of activation functions (an instance)
-        Activate_factory = Activation_factory()
+        activate_factory = Activation_factory()
         # The reister function needs an instance to work
-        Activate_factory.register("linear", nn.Identity())
-        print(Activate_factory._function_type)
 
         # Using ModuleList to store layers
         self._layers = torch.nn.ModuleList()
@@ -37,11 +36,11 @@ class NeuralNetwork(nn.Module):
             activation_key = config['activation']
 
             if layer_type == 'dense':
-                self._layers.append(Dense_layer(input_size, output_size, Activate_factory(activation_key)))
+                self._layers.append(Dense_layer(input_size, output_size, activate_factory(activation_key)))
             
             elif layer_type == 'vanilla_low_rank':
                 size = config['rank']
-                self._layers.append(Vanilla_low_rank_layer(input_size, size, output_size, Activate_factory(activation_key)))
+                self._layers.append(Vanilla_low_rank_layer(input_size, size, output_size, activate_factory(activation_key)))
 
     def forward(self, X):
         """
@@ -64,3 +63,5 @@ class NeuralNetwork(nn.Module):
         for layer in self._layers:
             layer.update(self._lr)
         
+
+net = NeuralNetwork()
