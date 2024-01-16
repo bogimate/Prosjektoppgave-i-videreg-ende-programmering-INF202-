@@ -1,6 +1,9 @@
 import torch
 import torch.nn as nn
 
+from activation_factory import Activation_factory
+from layers import Dense_layer, Vanilla_low_rank_layer
+
 # Define your neural network architecture. Again, you can add your own functions
 class NeuralNetwork(nn.Module):
     def __init__(self, layer_configs, lr=0.0001):
