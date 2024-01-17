@@ -2,19 +2,19 @@
 [settings]
 learningRate = 0.01
 batchSize = 64
-numEpochs = 10
+numEpochs = 1
 
 # define network architecture
 # possible layer types are 'dense', 'lowRank', and 'vanillaLowRank'
 # possible activations are 'relu', 'linear', 'sigmoid', 'tanh'
 [[layer]]
-type = 'lowRank'
+type = 'vanilla_low_rank'
 dims = [784, 512]
 activation = 'relu'
 rank = 20
 
 [[layer]]
-type = 'lowRank'
+type = 'vanilla_low_rank'
 dims = [512, 256]
 activation = 'relu'
 rank = 20
