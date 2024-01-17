@@ -35,19 +35,23 @@ NeuralNet = NeuralNetwork(config_layers, lr)
 # Training loop
 for i in range(num_epochs):
     for step, (images, labels) in enumerate(trainloader):
+        # Forward pass: network processes input images to generate predictions (out)
         out = NeuralNet(images)
-
+        # loss = compares predicted output with true value (actual labels) 
         loss = criterion(out, labels)
+        # backward pass: calculating gradients with respect to the loss for each parameter
         loss.backward()
-
+        # Updates the parameters based on the computed gradients
         NeuralNet.update()
 
         # TODO: Train your weights and biases. Think about how you can use object oriented programming to do so.
         # The way you do this heavily impacts the extendability of your code. So take some time to think about the design of your program!
 
+        # Prints the loss every 100 steps during training to monitor the training process
         if (step + 1) % 100 == 0:
             print(f'Epoch [{i+1}/{num_epochs}], Step [{step+1}/{len(trainloader)}], Loss: {loss.item():.4f}')
 
+    # Calculates and prints the validation accuracy for each epoch 
     correct = 0
     total = 0
     with torch.no_grad():
