@@ -50,4 +50,4 @@ if __name__ == "__main__":
         training_nn(config_layers, lr, batch_size, num_epochs)
 
     else:
-        print("Please provide either --folder or --file argument.")
+        print("Please provide either -d (or --folder) or -f (or --file) argument.")
