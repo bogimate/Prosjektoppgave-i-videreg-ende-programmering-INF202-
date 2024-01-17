@@ -5,7 +5,7 @@ from .layers import Dense_layer, Vanilla_low_rank_layer
 from .activation_factory import Activation_factory
 
 # Defining the neural network architecture
-class NeuralNetwork(nn.Module):
+class Neural_network(nn.Module):
     def __init__(self, layer_configs, lr=0.0001):
         """
         Constructs a neural network with variable layers 
@@ -14,7 +14,7 @@ class NeuralNetwork(nn.Module):
             output size and activation function for that layer. 
             lr: learingrate
         """
-        super(NeuralNetwork, self).__init__()
+        super(Neural_network, self).__init__()
         self._flatten = nn.Flatten()   # Resize input
         self._lr = lr                  # Default value for learingrate 
 
