@@ -4,9 +4,6 @@ import torch.nn as nn
 from .layers import Dense_layer, Vanilla_low_rank_layer
 from .activation_factory import Activation_factory
 
-
-
-
 # Defining the neural network architecture
 class NeuralNetwork(nn.Module):
     def __init__(self, layer_configs, lr=0.0001):
@@ -59,6 +56,8 @@ class NeuralNetwork(nn.Module):
         
         return Z
     
+    # Function for updating the layers
     def update(self):
+        # Calls the update methode for each layer
         for layer in self._layers:
             layer.update(self._lr)

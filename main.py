@@ -6,7 +6,6 @@ import toml
 from src.classes.neural_network import NeuralNetwork
 from src.classes.read_config import read_config 
 
-
 # Final Validation Accuracy 88.83%
 # The best working code at the moment without orthonormal U and V
 # With config read function
