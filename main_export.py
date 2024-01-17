@@ -54,3 +54,4 @@ if __name__ == "__main__":
         print("Please provide either -d (or --folder) or -d (or --folder) and -f (or --file) argument.")
         print("E.g: python file_name.py -d path_name")
         print("E.g: python file_name.py -d path_name -f file_name.toml")
+
