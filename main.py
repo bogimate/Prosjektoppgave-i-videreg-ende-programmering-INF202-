@@ -7,10 +7,10 @@ from src.classes.train import training_nn
 #    Based on regular U and V (not orthonormal)
 
 # File patch to config file folder
-folder_path = 'config/'
+#folder_path = 'config/'
 
 # List of files in the config folder
-folder = os.listdir(folder_path)
+#folder = os.listdir(folder_path)
 
 # # Loop for reading all the config files in a folder
 # for file in folder:
@@ -52,7 +52,7 @@ def parse_input():
     return folder_path
 
 def process_files(folder_path):
-    for file in folder:
+    for file in folder_path:
         if file.endswith('.toml'):
             # Connects folder path with file name 
             # Eg: 'config/config_1.toml'
