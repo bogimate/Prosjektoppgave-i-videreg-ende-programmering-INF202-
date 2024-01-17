@@ -1,3 +1,4 @@
+import os
 from src.classes.read_config import read_config 
 from src.classes.train import training_nn
 
