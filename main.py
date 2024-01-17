@@ -24,7 +24,7 @@ for file in folder:
         config_path = os.path.join(config_folder_path, file)
 
         # Making sure that we read config file from config folder
-        config_settings, config_layers = read_config('config/our_config.toml')
+        config_settings, config_layers = read_config(config_path)
 
         lr = config_settings.get('learningRate', 0.0001)
         batch_size = config_settings.get('batchSize', 64)
