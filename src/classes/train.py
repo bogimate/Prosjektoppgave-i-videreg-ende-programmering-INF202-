@@ -17,19 +17,19 @@ def training_nn(config_layers, lr, batch_size, num_epochs):
 
     criterion = nn.CrossEntropyLoss()
     # Create an instance of Neural_network and directly use the activation functions from the Activation class
-    NeuralNet = Neural_network(config_layers, lr)
+    neural_net = Neural_network(config_layers, lr)
 
     # Training loop
     for i in range(num_epochs):
         for step, (images, labels) in enumerate(trainloader):
             # Forward pass: network processes input images to generate predictions (out)
-            out = NeuralNet(images)
+            out = neural_net(images)
             # loss = compares predicted output with true value (actual labels) 
             loss = criterion(out, labels)
             # backward pass: calculating gradients with respect to the loss for each parameter
             loss.backward()
             # Updates the parameters based on the computed gradients
-            NeuralNet.update()
+            neural_net.update()
 
             # TODO: Train your weights and biases. Think about how you can use object oriented programming to do so.
             # The way you do this heavily impacts the extendability of your code. So take some time to think about the design of your program!
@@ -43,7 +43,7 @@ def training_nn(config_layers, lr, batch_size, num_epochs):
         total = 0
         with torch.no_grad():
             for images, labels in testloader:
-                outputs = NeuralNet(images)
+                outputs = neural_net(images)
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)
                 correct += (predicted == labels).sum().item()

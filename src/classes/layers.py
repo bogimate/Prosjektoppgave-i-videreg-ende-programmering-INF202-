@@ -3,12 +3,12 @@ import torch.nn as nn
 
 # Dense layer
 class Dense_layer(nn.Module):
-    def __init__(self, inputSize, outputSize, activation):
+    def __init__(self, input_size, output_size, activation):
         super(Dense_layer, self).__init__()
        
         # Defining the parameters
-        self._W = nn.Parameter(torch.randn(inputSize, outputSize), requires_grad=True)
-        self._b = nn.Parameter(torch.randn(outputSize), requires_grad=True) 
+        self._W = nn.Parameter(torch.randn(input_size, output_size), requires_grad=True)
+        self._b = nn.Parameter(torch.randn(output_size), requires_grad=True) 
         self.activation = activation # Assigning the activation function 
  
     def forward(self, X):
@@ -33,14 +33,14 @@ class Dense_layer(nn.Module):
 
 # Vanilla low rank layer
 class Vanilla_low_rank_layer(nn.Module):
-    def __init__(self, inputSize, Size, outputSize, activation):
+    def __init__(self, input_size, size, output_size, activation):
         super(Vanilla_low_rank_layer, self).__init__()
 
         # Defining the parameters
-        self._U = nn.Parameter(torch.randn(inputSize, Size), requires_grad=True)
-        self._S = nn.Parameter(torch.randn(Size, Size), requires_grad=True)
-        self._V = nn.Parameter(torch.randn(Size, outputSize), requires_grad=True)
-        self._b = nn.Parameter(torch.randn(outputSize), requires_grad=True) 
+        self._U = nn.Parameter(torch.randn(input_size, size), requires_grad=True)
+        self._S = nn.Parameter(torch.randn(size, size), requires_grad=True)
+        self._V = nn.Parameter(torch.randn(size, output_size), requires_grad=True)
+        self._b = nn.Parameter(torch.randn(output_size), requires_grad=True) 
         self.activation = activation # Assigning the activation function
 
     def forward(self, X):
