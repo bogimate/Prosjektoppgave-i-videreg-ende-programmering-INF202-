@@ -19,6 +19,7 @@ class Neural_network(nn.Module):
         self._lr = lr                  # Default value for learingrate 
 
         # Dictionary of activation functions (an instance)
+        # Create an instance of Neural_network and directly use the activation functions from the Activation class
         activate_factory = Activation_factory()
         # The reister function needs an instance to work
 

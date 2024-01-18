@@ -5,7 +5,9 @@ from torchvision import datasets, transforms
 from .neural_network import Neural_network
 
 def training_nn(config_layers, lr, batch_size, num_epochs):
-    # Load MNIST dataset
+    """Load MNIST dataset
+       A dataset of handwritten digits
+    """
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
 
     traindataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
@@ -14,9 +16,10 @@ def training_nn(config_layers, lr, batch_size, num_epochs):
     trainloader = DataLoader(traindataset, batch_size=batch_size, shuffle=True)
     testloader  = DataLoader(testdataset, batch_size=batch_size, shuffle=False)
 
-
+    # Loss function
     criterion = nn.CrossEntropyLoss()
-    # Create an instance of Neural_network and directly use the activation functions from the Activation class
+
+    # Creating an instance of the Neural_network class
     neural_net = Neural_network(config_layers, lr)
 
     # Training loop
@@ -24,15 +27,12 @@ def training_nn(config_layers, lr, batch_size, num_epochs):
         for step, (images, labels) in enumerate(trainloader):
             # Forward pass: network processes input images to generate predictions (out)
             out = neural_net(images)
-            # loss = compares predicted output with true value (actual labels) 
+            # loss: compares predicted output with true value (actual labels) 
             loss = criterion(out, labels)
             # backward pass: calculating gradients with respect to the loss for each parameter
             loss.backward()
             # Updates the parameters based on the computed gradients
             neural_net.update()
-
-            # TODO: Train your weights and biases. Think about how you can use object oriented programming to do so.
-            # The way you do this heavily impacts the extendability of your code. So take some time to think about the design of your program!
 
             # Prints the loss every 100 steps during training to monitor the training process
             if (step + 1) % 100 == 0:
