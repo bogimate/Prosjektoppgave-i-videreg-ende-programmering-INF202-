@@ -14,7 +14,7 @@ def parse_input():
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    return args.folder, args.file
+    return args.folder, args.file 
 
 if __name__ == "__main__":
     folder, file = parse_input()
@@ -53,4 +53,4 @@ if __name__ == "__main__":
     else:
         print("Please provide either -d (or --folder) or -d (or --folder) and -f (or --file) argument.")
         print("E.g: python file_name.py -d path_name")
-        print("E.g: python file_name.py -d path_name -f file_name.toml")
+        print("E.g: python file_name.py -f path_name\file_name.toml")
