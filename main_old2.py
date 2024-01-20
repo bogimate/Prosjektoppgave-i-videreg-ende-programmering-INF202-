@@ -1,9 +1,8 @@
 import os
 import argparse
-import torch.nn as nn
+import sys
 from src.classes.read_config import read_config 
 from src.classes.train import training_nn
-from src.classes.load_MNIST import load_MNIST
 
 def parse_input():
     parser = argparse.ArgumentParser(description='Neural Network Training Script')
@@ -31,12 +30,11 @@ if __name__ == "__main__":
                 # Read config from the current file in the loop
                 config_settings, config_layers = read_config(config_path)
 
-                #lr = config_settings.get('learningRate', 0.0001)
-                #batch_size = config_settings.get('batchSize', 64)
-                #num_epochs = config_settings.get('numEpochs', 10)
+                lr = config_settings.get('learningRate', 0.0001)
+                batch_size = config_settings.get('batchSize', 64)
+                num_epochs = config_settings.get('numEpochs', 10)
 
-                # training_nn(config_layers, lr, batch_size, num_epochs)
-                training_nn(config_settings, config_layers, load_MNIST)
+                training_nn(config_layers, lr, batch_size, num_epochs)
 
     elif file:
         # If a specific file is provided, process only that file
@@ -46,25 +44,14 @@ if __name__ == "__main__":
         # Read config from the specified file
         config_settings, config_layers = read_config(file_path)
 
-        #lr = config_settings.get('learningRate', 0.0001)
-        #batch_size = config_settings.get('batchSize', 64)
-        #num_epochs = config_settings.get('numEpochs', 10)
+        lr = config_settings.get('learningRate', 0.0001)
+        batch_size = config_settings.get('batchSize', 64)
+        num_epochs = config_settings.get('numEpochs', 10)
 
-        training_nn(config_settings, config_layers, load_MNIST)
-
-        # training_nn(config_layers, lr, batch_size, num_epochs)
-        #training_nn(neural_net, trainloader, testloader, num_epochs=10)
+        training_nn(config_layers, lr, batch_size, num_epochs)
 
     else:
         print("Please provide either -d (or --folder) or -d (or --folder) and -f (or --file) argument.")
         print("E.g: python file_name.py -d path_name")
         print(r'''E.g: python file_name.py -f path_name\file_name.toml''')
         print()
-
-
-# # Loss function
-# criterion = nn.CrossEntropyLoss()
-
-# # Creating an instance of the Neural_network class
-#neural_net = Neural_network(config_layers, lr)
-
