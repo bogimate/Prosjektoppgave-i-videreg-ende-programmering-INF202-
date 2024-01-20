@@ -1,26 +1,28 @@
 import torch
 import torch.nn as nn
+from torch.utils.data import DataLoader
+from torchvision import datasets, transforms
 from .neural_network import Neural_network
-# from torch.utils.data import DataLoader
-# from torchvision import datasets, transforms
 
+def training_nn(config_layers, lr, batch_size, num_epochs):
+    """Load MNIST dataset
+       A dataset of handwritten digits
+    """
+    transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
 
+    traindataset = datasets.MNIST(root='./data', train=True, transform=transform, download=True)
+    testdataset  = datasets.MNIST(root='./data', train=False, transform=transform, download=True)
 
-def training_nn(config_settings, config_layers, data_loader_func):
+    trainloader = DataLoader(traindataset, batch_size=batch_size, shuffle=True)
+    testloader  = DataLoader(testdataset, batch_size=batch_size, shuffle=False)
+
+    # Loss function
     criterion = nn.CrossEntropyLoss()
 
-    # Retriving the settings from config_settings
-    lr = config_settings.get('learningRate', 0.0001)
-    batch_size = config_settings.get('batchSize', 64)
-    num_epochs = config_settings.get('numEpochs', 10)
-
-    # Defining train loader and test loader from a specyfied function
-    trainloader, testloader = data_loader_func(batch_size)
-
-    # Makeing a neural network based on config_layers and lr from config_settings
+    # Creating an instance of the Neural_network class
     neural_net = Neural_network(config_layers, lr)
 
-    # traing loop
+    # Training loop
     for i in range(num_epochs):
         for step, (images, labels) in enumerate(trainloader):
             # Forward pass: network processes input images to generate predictions (out)
