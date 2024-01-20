@@ -28,7 +28,7 @@ class Activation_factory:
             self._function_type[key] = name
         
         else: 
-            print(f"{key} activation function already exists.")
+            raise ValueError(f"{key} activation function already exists.")
 
 
     # Calls the activation function
@@ -41,3 +41,13 @@ class Activation_factory:
             torch.nn.Module: The PyTorch activation function.
         """
         return self._function_type[function]
+
+
+activation = Activation_factory()
+#act = activation('lin')
+#print(act)
+
+activation.register('relu', nn.ReLU())
+for activation_key, activation_func in activation._function_type.items():
+    print(f"{activation_key}: {activation_func}")
+
