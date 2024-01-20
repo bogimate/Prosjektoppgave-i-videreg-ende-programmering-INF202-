@@ -2,17 +2,23 @@ import pytest
 import torch.nn as nn
 from src.classes.activation_factory import Activation_factory
 
-def test_activation_factory_register():
+def test_activation_factory():
     activation_factory = Activation_factory()
 
+    # Register a new activation function 
     activation_factory.register('sigmoid', nn.Sigmoid())
 
+    # Call the registered activation function
     sigmoid_activation = activation_factory('sigmoid')
 
+    # Checks if the activation function is not None, therefore it excists 
     assert sigmoid_activation is not None
+    # Check that the activation function is an instence of nn.ReLU
     assert isinstance(sigmoid_activation, nn.Sigmoid)
 
-def test_activation_factory_register2():
+# Testing the factory to see that it fails
+# Trying to add an already existing activation function
+def test_activation_factory_failing():
     activation_factory = Activation_factory()
 
     activation_factory.register('relu', nn.ReLU())
@@ -25,3 +31,4 @@ def test_activation_factory_register2():
 
 if __name__ == '__main__':
     pytest.main()
+
