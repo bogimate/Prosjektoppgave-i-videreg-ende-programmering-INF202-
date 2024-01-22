@@ -1,3 +1,6 @@
+import torch
+from src.classes.neural_network import Neural_network
+
 def test_neural_network_forward():
     batch_size = 10
     
