@@ -43,9 +43,9 @@ def test_vanilla_low_rank_layer_forward():
 
 def test_Dense_layer_update():
     # Create a Dense_layer instance
-    input_size = 10
-    output_size = 5
-    batch_size = 3
+    input_size = 5
+    output_size = 3
+    batch_size = 10
     activation = Activation_factory()('relu')  # You can choose any activation function
     dense_layer = Dense_layer(input_size, output_size, activation)
 
@@ -68,6 +68,40 @@ def test_Dense_layer_update():
     updated_b = dense_layer._b.data
 
     assert (updated_W != torch.randn(input_size, output_size)).any()
+    assert (updated_b != torch.randn(output_size)).any()
+
+def test_Vanilla_low_rank_layer_update():
+    # Arrange
+    input_size = 5
+    output_size = 3
+    rank = 2
+    batch_size = 10
+    activation = Activation_factory()('relu')  # You can choose any activation function
+    vanilla_low_rank_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
+
+    # Generate a random input tensor
+    X = torch.randn((batch_size, input_size))
+
+    # Perform forward pass
+    output = vanilla_low_rank_layer(X)
+
+    # Perform a backward pass 
+    loss = torch.sum(output)
+    loss.backward()
+
+    # Perform update
+    lr = 0.001
+    vanilla_low_rank_layer.update(lr)
+
+    # Check if the parameters have been updated
+    updated_U = vanilla_low_rank_layer._U.data
+    updated_S = vanilla_low_rank_layer._S.data
+    updated_V = vanilla_low_rank_layer._V.data
+    updated_b = vanilla_low_rank_layer._b.data
+
+    assert (updated_U != torch.randn(input_size, rank)).any()
+    assert (updated_S != torch.randn(rank, rank)).any()
+    assert (updated_V != torch.randn(rank, output_size)).any()
     assert (updated_b != torch.randn(output_size)).any()
 
 if __name__ == '__main__':
