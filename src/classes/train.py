@@ -40,7 +40,7 @@ def training_nn(config_settings, config_layers, data_loader_func):
         correct = 0
         total = 0
         with torch.no_grad():
-            for images, labels in testloader:
+            for images, labels in trainloader:
                 outputs = neural_net(images)
                 _, predicted = torch.max(outputs.data, 1)
                 total += labels.size(0)

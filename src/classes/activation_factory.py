@@ -11,7 +11,7 @@ class Activation_factory:
             'relu': nn.ReLU(),
             'linear': nn.Identity(),
             'tanh': nn.Tanh(),
-            #'sigmoid': nn.Sigmoid(),
+            'sigmoid': nn.Sigmoid(),
             'softmax': nn.Softmax()
         }
 
