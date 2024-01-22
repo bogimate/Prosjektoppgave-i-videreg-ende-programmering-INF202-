@@ -19,7 +19,7 @@ def test_activation_factory():
     # Check that the activation function is an instance of nn.LeakyReLU
     assert isinstance(leaky_relu_activation, nn.LeakyReLU)
 
-def test_register_existing_activation():
+def test_registrating_existing_activation_raise_error():
     # Arrange
     activation_factory = Activation_factory()
 
@@ -28,6 +28,7 @@ def test_register_existing_activation():
 
     # Assert: Use pytest.raises to check if ValueError is raised
     with pytest.raises(ValueError, match="relu activation function already exists."):
+        # Act: Attempt to register the same activation function again with the correct key
         activation_factory.register('relu', nn.ReLU())
 
 def test_call_nonexistent_activation():

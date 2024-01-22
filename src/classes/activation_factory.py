@@ -57,11 +57,12 @@ class Activation_factory:
     #         torch.nn.Module: The PyTorch activation function.
     #     """
     #     return self._function_type[function]
-# activation = Activation_factory()
-# #act = activation('lin')
-# #print(act)
 
-# activation.register('relu', nn.ReLU())
-# for activation_key, activation_func in activation._function_type.items():
-#     print(f"{activation_key}: {activation_func}")
+activation = Activation_factory()
+#act = activation('lin')
+#print(act)
+
+activation.register('relu', nn.ReLU())
+for activation_key, activation_func in activation._function_type.items():
+    print(f"{activation_key}: {activation_func}")
 
