@@ -29,7 +29,7 @@ def Vanilla_low_rank_layer_forward():
     batch_size = 10
     activation = Activation_factory()('relu')
     # Making a dense layer 
-    vanilla_layer = Vanilla_low_rank_layer(input_size, output_size, rank, activation)
+    vanilla_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
 
     # Generate a random input tensor
     X = torch.randn((batch_size, input_size))
