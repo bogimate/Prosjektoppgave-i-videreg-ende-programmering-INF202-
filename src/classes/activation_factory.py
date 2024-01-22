@@ -11,7 +11,7 @@ class Activation_factory:
             'relu': nn.ReLU(),
             'linear': nn.Identity(),
             'tanh': nn.Tanh(),
-            'sigmoid': nn.Sigmoid(),
+            #'sigmoid': nn.Sigmoid(),
             'softmax': nn.Softmax()
         }
 
@@ -40,9 +40,23 @@ class Activation_factory:
         Returns:
             torch.nn.Module: The PyTorch activation function.
         """
-        return self._function_type[function]
+        if function not in self._function_type:
+            raise KeyError(f"{function} function does not exist in dictionary.")
+        else:
+            return self._function_type[function]
+        #return self._function_type[function]
 
 
+
+    # def __call__(self, function):
+    #     """
+    #     Retrieves and returns the activation function associated with the provided key.
+    #     Args:
+    #         function (str): The key representing the activation function.
+    #     Returns:
+    #         torch.nn.Module: The PyTorch activation function.
+    #     """
+    #     return self._function_type[function]
 # activation = Activation_factory()
 # #act = activation('lin')
 # #print(act)

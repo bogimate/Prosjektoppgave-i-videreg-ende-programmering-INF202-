@@ -2,20 +2,6 @@ import pytest
 import torch.nn as nn
 from src.classes.activation_factory import Activation_factory
 
-# def test_activation_factory():
-#     activation_factory = Activation_factory()
-
-#     # Register a new activation function 
-#     activation_factory.register('LeakyReLU', nn.LeakyReLU())
-
-#     # Call the registered activation function
-#     sigmoid_activation = activation_factory('LeakyReLU')
-
-#     # Checks if the activation function is not None, therefore it excists 
-#     assert sigmoid_activation is not None
-#     # Check that the activation function is an instence of nn.ReLU
-#     assert isinstance(sigmoid_activation, nn.LeakyReLU())
-
 def test_activation_factory():
     # Arrange
     activation_factory = Activation_factory()
@@ -32,7 +18,6 @@ def test_activation_factory():
     assert leaky_relu_activation is not None
     # Check that the activation function is an instance of nn.LeakyReLU
     assert isinstance(leaky_relu_activation, nn.LeakyReLU)
-
 
 def test_register_existing_activation():
     # Arrange
@@ -52,21 +37,3 @@ def test_call_nonexistent_activation():
     # Act and Assert
     with pytest.raises(KeyError, match="nonexistent_activation function does not exist in dictionary."):
         activation_factory('nonexistent_activation')
-
-
-# Testing the factory to see that it fails
-# Trying to add an already existing activation function
-# def test_activation_factory_failing():
-#     activation_factory = Activation_factory()
-
-#     activation_factory.register('relu', nn.ReLU())
-
-#     relu_activation = activation_factory('relu')
-
-#     assert relu_activation is not None
-#     assert isinstance(relu_activation, nn.ReLU)
-
-
-if __name__ == '__main__':
-    pytest.main()
-

@@ -6,9 +6,9 @@ from src.classes.activation_factory import Activation_factory
 
 # Test for forward pass in Dense_layer
 def test_Dense_layer_forward():
-    input_size = 10
-    output_size = 5
-    batch_size = 3
+    input_size = 5
+    output_size = 3
+    batch_size = 10
     activation = Activation_factory()('relu')
     # Making a dense layer 
     dense_layer = Dense_layer(input_size, output_size, activation)
@@ -22,11 +22,24 @@ def test_Dense_layer_forward():
     # Checking if the output dimentions is as expected
     assert output.shape == (batch_size, output_size)
 
-import pytest
-import torch
-import torch.nn as nn
-from src.classes.layers import Dense_layer
-from src.classes.activation_factory import Activation_factory
+def Vanilla_low_rank_layer_forward():
+    input_size = 5
+    output_size = 3
+    rank = 2
+    batch_size = 10
+    activation = Activation_factory()('relu')
+    # Making a dense layer 
+    vanilla_layer = Vanilla_low_rank_layer(input_size, output_size, rank, activation)
+
+    # Generate a random input tensor
+    X = torch.randn((batch_size, input_size))
+
+    # Calling the forward function
+    output = vanilla_layer(X)
+
+    # Checking if the output dimentions is as expected
+    assert output.shape == (batch_size, output_size)
+
 
 def test_Dense_layer_update():
     # Create a Dense_layer instance
