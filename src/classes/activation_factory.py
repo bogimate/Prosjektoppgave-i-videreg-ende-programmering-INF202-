@@ -11,7 +11,7 @@ class Activation_factory:
             'relu': nn.ReLU(),
             'linear': nn.Identity(),
             'tanh': nn.Tanh(),
-            #'sigmoid': nn.Sigmoid(),
+            'sigmoid': nn.Sigmoid(),
             'softmax': nn.Softmax()
         }
 
@@ -58,11 +58,11 @@ class Activation_factory:
     #     """
     #     return self._function_type[function]
 
-activation = Activation_factory()
-#act = activation('lin')
-#print(act)
+# activation = Activation_factory()
+# #act = activation('lin')
+# #print(act)
 
-activation.register('relu', nn.ReLU())
-for activation_key, activation_func in activation._function_type.items():
-    print(f"{activation_key}: {activation_func}")
+# activation.register('relu', nn.ReLU())
+# for activation_key, activation_func in activation._function_type.items():
+#     print(f"{activation_key}: {activation_func}")
 
