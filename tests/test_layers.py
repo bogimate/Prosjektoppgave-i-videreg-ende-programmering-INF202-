@@ -22,7 +22,7 @@ def test_Dense_layer_forward():
     # Checking if the output dimentions is as expected
     assert output.shape == (batch_size, output_size)
 
-def Vanilla_low_rank_layer_forward():
+def test_vanilla_low_rank_layer_forward():
     input_size = 5
     output_size = 3
     rank = 2
