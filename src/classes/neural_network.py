@@ -23,7 +23,7 @@ class Neural_network(nn.Module):
         activate_factory = Activation_factory()
         # The reister function needs an instance to work
 
-        # Using ModuleList to store layers
+        # Using ModuleList to store the layers
         self._layers = torch.nn.ModuleList()
 
         # Define layers based on layer_configs

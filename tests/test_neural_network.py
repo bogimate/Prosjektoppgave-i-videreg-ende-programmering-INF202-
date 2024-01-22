@@ -1,22 +1,33 @@
 import torch
 from src.classes.neural_network import Neural_network
 
-def test_neural_network_forward():
-    batch_size = 10
-    
+@pytest.fixture
+def neural_network():
+    # Create a Neural_network instance for testing
     layer_configs = [
-        {'type': 'dense', 'input_size': 5, 'output_size': 3, 'activation': 'relu'},
-        {'type': 'vanilla_low_rank', 'input_size': 3, 'rank': 2, 'output_size': 2, 'activation': 'lin'}
+        {'type': 'dense', 'dims': (9, 4), 'activation': 'relu'},
+        {'type': 'dense', 'dims': (4, 10), 'activation': 'sigmoid'}
     ]
+    return Neural_network(layer_configs, lr=0.001)
 
-    neural_network = Neural_network(layer_configs)
+# Testing the forward pass of the neural network
+def test_forward_pass(neural_network):
+    # Create random input tensor
+    input_data = torch.randn((5, 9))
 
-    # Create a sample input tensor
-    input_tensor = torch.randn((batch_size, layer_configs[0]['input_size']))
+    # Perform forward pass
+    output = neural_network.forward(input_data)
 
-    # Act
-    output_tensor = neural_network(input_tensor)
+    # Checking if the output dimentions is as expected
+    assert output.shape == (5, 10)  
 
-    # Assert
-    # Add assertions based on the expected output shape or other properties
-    assert output_tensor.shape == (batch_size, layer_configs[-1]['output_size'])
+# Testing the 
+def test_update(neural_network):
+    # Perform update
+    neural_network.update()
+
+    # Add assertions based on your expectations
+    # Check if the parameters have been updated for each layer
+    for layer in neural_network._layers:
+        assert not torch.allclose(layer._W, layer._W_initial)  # Check if W has been updated
+        assert not torch.allclose(layer._b, layer._b_initial)
