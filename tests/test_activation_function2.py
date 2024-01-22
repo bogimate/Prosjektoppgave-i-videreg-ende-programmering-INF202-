@@ -38,3 +38,7 @@ def test_call_nonexistent_activation():
     # Act and Assert
     with pytest.raises(KeyError, match="nonexistent_activation function does not exist in dictionary."):
         activation_factory('nonexistent_activation')
+
+if __name__ == '__main__':
+    pytest.main()
+
