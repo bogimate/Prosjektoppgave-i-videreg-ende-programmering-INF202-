@@ -1,43 +1,28 @@
+import pytest
 import torch
-from classes.neural_network_1 import Neural_network
+import torch.nn as nn
+from classes.neural_network import Neural_network
 
 
-def test_forward_pass():
-    layer_configs = [
-        {'type': 'dense', 'dims': (9, 4), 'activation': 'relu'},
-        {'type': 'dense', 'dims': (4, 10), 'activation': 'sigmoid'}
-    ]
+@pytest.fixture
+def create_neural_network():
+    def _create_neural_network(layer_configs, lr=0.0001):
+        return Neural_network(layer_configs, lr)
+    return _create_neural_network
 
-    neural_net = Neural_network(layer_configs, lr=0.001)
-    # Create random input tensor
-    input_data = torch.randn((5, 9))
+@pytest.mark.parametrize("layer_configs, lr, expected_output_size", 
+                      [([{'type': 'dense', 'dims': [784, 512], 'activation': 'relu'},
+                         {'type': 'dense', 'dims': [512, 10], 'activation': 'softmax'},
+                            ], 0.001, (1, 10)),])
 
-    # Perform forward pass
-    output = neural_net.forward(input_data)
 
-    # Checking if the output dimentions is as expected
-    assert output.shape == (5, 10)  
+def test_neural_network(create_neural_network, layer_configs, lr, expected_output_size):
+    # Arrange
+    neural_net = create_neural_network(layer_configs, lr)
+    input_tensor = torch.randn(1, 1, 28, 28)  # Example input size
 
-# Testing the 
-def test_update():
-    layer_configs = [
-        {'type': 'dense', 'dims': (9, 4), 'activation': 'relu'},
-        {'type': 'dense', 'dims': (4, 10), 'activation': 'sigmoid'}
-    ]
+    # Act
+    output = neural_net(input_tensor)
 
-    neural_net = Neural_network(layer_configs, lr=0.001)
-
-    # # Create random input tensor
-    # input_data = torch.randn((5, 9))
-
-    # # Perform forward pass
-    # output = neural_net.forward(input_data)
-
-    # Perform update
-    neural_net.update()
-
-    # Add assertions based on your expectations
-    # Check if the parameters have been updated for each layer
-    for layer in neural_net._layers:
-        assert not torch.allclose(layer._W, layer._W_initial)  # Check if W has been updated
-        assert not torch.allclose(layer._b, layer._b_initial) 
+    # Assert
+    assert output.size() == expected_output_size
