@@ -1,25 +1,18 @@
 import pytest
 import torch
-import torch.nn as nn
 from classes.neural_network import Neural_network
 
 
-@pytest.fixture
-def create_neural_network():
-    def _create_neural_network(layer_configs, lr=0.0001):
-        return Neural_network(layer_configs, lr)
-    return _create_neural_network
-
-@pytest.mark.parametrize("layer_configs, lr, expected_output_size", 
-                      [([{'type': 'dense', 'dims': [784, 512], 'activation': 'relu'},
-                         {'type': 'dense', 'dims': [512, 10], 'activation': 'softmax'},
-                            ], 0.001, (1, 10)),])
+@pytest.mark.parametrize("type, dims, activation, lr, expected_output_size",
+                         [('dense', [2, 3], 'relu', 0.0001, (1, 3)),
+                          ('dense', [3, 2], 'sigmoid', 0.001, (1, 2))])
 
 
-def test_neural_network(create_neural_network, layer_configs, lr, expected_output_size):
+def test_neural_network_parametrized(type, dims, activation, lr, expected_output_size):
     # Arrange
-    neural_net = create_neural_network(layer_configs, lr)
-    input_tensor = torch.randn(1, 1, 28, 28)  # Example input size
+    layer_configs = [{'type': type, 'dims': dims, 'activation': activation}]
+    neural_net = Neural_network(layer_configs, lr)
+    input_tensor = torch.randn(1, dims[0])  # Example input size
 
     # Act
     output = neural_net(input_tensor)
