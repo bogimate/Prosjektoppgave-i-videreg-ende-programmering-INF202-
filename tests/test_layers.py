@@ -21,7 +21,7 @@ def create_activation_factory():
 # Test for forward pass in Dense_layer
 def test_Dense_layer_forward(input_size, output_size, batch_size, key, create_activation_factory):
 
-    activation_factory = create_activation_factory
+    activation_factory = create_activation_factory()
 
     activation = activation_factory(key)
 
@@ -41,7 +41,7 @@ def test_Dense_layer_forward(input_size, output_size, batch_size, key, create_ac
 def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, key, create_activation_factory):
     # Create a Dense_layer instance
 
-    activation_factory = create_activation_factory
+    activation_factory = create_activation_factory()
 
     activation = activation_factory(key)
  
@@ -77,7 +77,7 @@ def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, 
 # Test for forward pass in Vanila_low_rank_layer
 def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_size, key, create_activation_factory):
 
-    activation_factory = create_activation_factory
+    activation_factory = create_activation_factory()
 
     activation = activation_factory(key)
 
@@ -96,7 +96,7 @@ def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_siz
 
 def test_Vanilla_low_rank_layer_update(input_size, rank, output_size, batch_size, learning_rate, key, create_activation_factory):
 
-    activation_factory = create_activation_factory
+    activation_factory = create_activation_factory()
 
     activation = activation_factory(key)
 
