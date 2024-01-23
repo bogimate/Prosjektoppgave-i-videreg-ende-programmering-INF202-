@@ -10,16 +10,12 @@ numEpochs = 8
 [[layer]]
 type = 'dense'
 dims = [784, 512]
-activation = 'tanh' 
+activation = 'tanh'
 
-[[layer]]
-type = 'dense'
-dims = [512, 256]
-activation = 'relu'
 
 [[layer]]
 type = 'vanilla_low_rank'
-dims = [256, 256]
+dims = [512, 256]
 activation = 'relu'
 rank = 30
 
