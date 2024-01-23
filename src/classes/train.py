@@ -56,7 +56,7 @@ def training_nn(config_settings, config_layers, data_loader_func, output_file='t
                 
                 # saving the values
                 # neural_net.save(output_weight_file)
-                neural_net.save(f'model_weights_epoch_{i + 1}.pth')
+                neural_net.save(f'model_parameters_epoch_{i + 1}.pth')
 
     else:
         # If no output file is specified, print the results to the terminal

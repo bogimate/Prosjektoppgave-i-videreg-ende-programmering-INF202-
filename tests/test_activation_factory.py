@@ -2,26 +2,36 @@ import pytest
 import torch.nn as nn
 from src.classes.activation_factory import Activation_factory
 
-def test_activation_factory():
+
+@pytest.fixture
+def create_activation_factory():
+    return Activation_factory()
+
+
+@pytest.mark.parametrize("key", "function",[
+    ('LeakyReLU', nn.LeakyReLU),
+    ('selu', nn.SELU),
+    
+])
+def test_activation_factory(create_activation_factory, key, function):
     # Arrange
-    activation_factory = Activation_factory()
+    activation_factory = create_activation_factory
 
     # Register a new activation function
-    activation_factory.register('LeakyReLU', nn.LeakyReLU())
+    activation_factory.register(key, function)
 
     # Act
     # Call the registered activation function
-    leaky_relu_activation = activation_factory('LeakyReLU')
+    leaky_relu_activation = activation_factory(key)
 
     # Assert
     # Check if the activation function is not None, therefore it exists
-    assert leaky_relu_activation is not None
     # Check that the activation function is an instance of nn.LeakyReLU
-    assert isinstance(leaky_relu_activation, nn.LeakyReLU)
+    assert leaky_relu_activation == function
 
 def test_registrating_existing_activation_raise_error():
     # Arrange
-    activation_factory = Activation_factory()
+    activation_factory = create_activation_factory
 
     # Act: Register an activation function
     activation_factory.register('relu', nn.ReLU())
@@ -33,7 +43,7 @@ def test_registrating_existing_activation_raise_error():
 
 def test_call_nonexistent_activation():
     # Arrange
-    activation_factory = Activation_factory()
+    activation_factory = create_activation_factory
 
     # Act and Assert
     with pytest.raises(KeyError, match="nonexistent_activation function does not exist in dictionary."):

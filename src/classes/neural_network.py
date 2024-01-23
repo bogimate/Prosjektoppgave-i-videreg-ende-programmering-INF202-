@@ -68,4 +68,4 @@ class Neural_network(nn.Module):
         # state_dict: Containing all the learnable parameters of the model, weights and biases
         checkpoint = {'state_dict': self._layers.state_dict()}
         torch.save(checkpoint, filename) 
-        print(f'Model weights saved to: {filename}')
+        print(f'Model parameters saved to: {filename}')

@@ -1,6 +1,11 @@
 import pytest
 from src.classes.read_config import read_config
 
+@pytest.fixture
+
+def create_file_path():
+    return "config/config_test.toml"
+
 
 def test_read_config_lr():
     test_config = "config/config_test.toml"
