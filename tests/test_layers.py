@@ -4,12 +4,24 @@ import torch.nn as nn
 from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 from src.classes.activation_factory import Activation_factory
 
+@pytest.fixture
+def create_activation_factory():
+    return Activation_factory()
+
+@pytest.mark.parametrize("input_size, output_size, batch_size", [
+    (5, 3, 10),
+    (8, 4, 5),
+    (10, 5, 8),
+])
+
 # Test for forward pass in Dense_layer
-def test_Dense_layer_forward():
-    input_size = 5
-    output_size = 3
-    batch_size = 10
-    activation = Activation_factory()('relu')
+def test_Dense_layer_forward(input_size, output_size, batch_size, create_activation_factory):
+
+    activation_factory = create_activation_factory
+
+    activation = activation_factory('relu')
+
+    # activation = Activation_factory()('relu')
     # Making a dense layer 
     dense_layer = Dense_layer(input_size, output_size, activation)
 
