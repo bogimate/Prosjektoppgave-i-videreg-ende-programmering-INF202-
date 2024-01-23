@@ -39,7 +39,7 @@ class Vanilla_low_rank_layer(nn.Module):
         # Defining the parameters
         self._U = nn.Parameter(torch.randn(input_size, size), requires_grad=True)
         self._S = nn.Parameter(torch.randn(size, size), requires_grad=True)
-        self._V = nn.Parameter(torch.randn(size, output_size), requires_grad=True)
+        self._V = nn.Parameter(torch.randn(output_size, size), requires_grad=True)
         self._b = nn.Parameter(torch.randn(output_size), requires_grad=True) 
         self.activation = activation # Assigning the activation function
 
@@ -54,7 +54,7 @@ class Vanilla_low_rank_layer(nn.Module):
         # Perform linear transformation
         step_1 = torch.matmul(X, self._U)
         step_2 = torch.matmul(step_1, self._S)
-        step_3 = torch.matmul(step_2, self._V)
+        step_3 = torch.matmul(step_2, self._V.T)
         output = step_3 + self._b
 
         # output = torch.matmul(torch.matmul(torch.matmul(X, self._U), self._S), self._V) + self._b
@@ -77,5 +77,5 @@ class Vanilla_low_rank_layer(nn.Module):
 
     def orthogonalize(self):
         # Appling QR-decomposition to make U and V orthonormal
-        self._U.data, _ = torch.qr(self._U.data)
-        self._V.data, _ = torch.qr(self._V.data)
+        self._U.data, _ = torch.linalg.qr(self._U.data, mode)
+        self._V.data, _ = torch.linalg.qr(self._V.data, mode)
