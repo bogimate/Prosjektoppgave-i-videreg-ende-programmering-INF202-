@@ -14,13 +14,12 @@ class Neural_network(nn.Module):
             lr: learingrate
         """
         super(Neural_network, self).__init__()
-        self._flatten = nn.Flatten()   # Resize input
-        self._lr = lr                  # Default value for learingrate 
+        self._flatten = nn.Flatten()           # Resize input
+        self._lr = lr                          # Default value for learingrate 
 
-        # Dictionary of activation functions (an instance)
         # Create an instance of Neural_network and directly use the activation functions from the Activation class
         activate_factory = Activation_factory()
-        # The reister function needs an instance to work
+        # The register function needs an instance to work
 
         # Using ModuleList to store layers
         self._layers = torch.nn.Sequential()
@@ -32,9 +31,11 @@ class Neural_network(nn.Module):
             output_size = config['dims'][1]
             activation_key = config['activation']
 
+            # Making a dense layer
             if layer_type == 'dense':
                 self._layers.add_module(name=f"{i+1}_{layer_type}_{activation_key}", module=Dense_layer(input_size, output_size, activate_factory(activation_key)))
             
+            # Making a vanilla low rank layer
             elif layer_type == 'vanilla_low_rank':
                 size = config['rank']
                 self._layers.add_module(name=f"{i+1}_{layer_type}_{activation_key}", module=Vanilla_low_rank_layer(input_size, size, output_size, activate_factory(activation_key)))
@@ -64,8 +65,13 @@ class Neural_network(nn.Module):
 
     # Function for saving the weights and biases
     def save(self, filename=None):
-        # checkpoint: Saving the models state at a certain point in training
-        # state_dict: Containing all the learnable parameters of the model, weights and biases
+        """
+        Saves the models parameters.
+        checkpoint: Saving the models state at a certain point in training
+        state_dict: Containing all the learnable parameters of the model, weights and biases
+        Args:
+            filename: filename for saving models parameters  
+        """
         checkpoint = {'state_dict': self._layers.state_dict()}
         torch.save(checkpoint, filename) 
         print(f'Model parameters saved to: {filename}')
