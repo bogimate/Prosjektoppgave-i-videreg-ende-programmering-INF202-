@@ -1,0 +1,10 @@
+Epoch [1/1], Step [100/938], Loss: 12342.0059
+Epoch [1/1], Step [200/938], Loss: 12718.7109
+Epoch [1/1], Step [300/938], Loss: 2294.5078
+Epoch [1/1], Step [400/938], Loss: 4931.2856
+Epoch [1/1], Step [500/938], Loss: 3972.0684
+Epoch [1/1], Step [600/938], Loss: 5060.8110
+Epoch [1/1], Step [700/938], Loss: 5705.5259
+Epoch [1/1], Step [800/938], Loss: 1580.9241
+Epoch [1/1], Step [900/938], Loss: 2953.5547
+Epoch [1/1], Validation Accuracy: 80.14%
