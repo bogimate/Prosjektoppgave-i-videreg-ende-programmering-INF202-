@@ -1,6 +1,6 @@
 import os
 from src.classes.read_config import read_config 
-from src.classes.train import training_nn
+from classes.train_2 import training_nn
 
 # The best working code at the moment.
 #    Based on regular U and V (not orthonormal)
