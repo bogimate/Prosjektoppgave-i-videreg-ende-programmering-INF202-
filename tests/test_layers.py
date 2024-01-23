@@ -1,5 +1,6 @@
 import pytest
 import torch
+import torch.nn as nn
 from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 from src.classes.activation_factory import Activation_factory
 
@@ -7,23 +8,19 @@ from src.classes.activation_factory import Activation_factory
 def create_activation_factory():
     return Activation_factory()
 
-@pytest.mark.parametrize("input_size, rank, output_size, batch_size, learning_rate", [
-    (5, 2, 3, 10, 0.001),
-    (8, 3, 4, 5, 0.0001),
-    (10, 5, 5, 8, 0.01),
+@pytest.mark.parametrize("input_size, output_size, batch_size, activation", [
+    (5, 3, 10, 'relu'),
+    (8, 4, 5, 'relu'),
+    (10, 5, 8, 'linear'),
 ])
-
-@pytest.mark.parametrize("key",
-                        ['relu',
-                         'linear'])
 
 
 # Test for forward pass in Dense_layer
-def test_Dense_layer_forward(input_size, output_size, batch_size, key, create_activation_factory):
+def test_Dense_layer_forward(input_size, output_size, batch_size, activation, create_activation_factory):
 
     activation_factory = create_activation_factory()
 
-    activation = activation_factory(key)
+    activation = activation_factory(activation)
 
     # Making a dense layer 
     dense_layer = Dense_layer(input_size, output_size, activation)
@@ -37,13 +34,19 @@ def test_Dense_layer_forward(input_size, output_size, batch_size, key, create_ac
     # Checking if the output dimentions is as expected
     assert output.shape == (batch_size, output_size)
 
+@pytest.mark.parametrize("input_size, output_size, batch_size, learning_rate, activation", [
+    (5, 3, 10, 0.001, 'relu'),
+    (8, 4, 5, 0.0001, 'relu'),
+    (10, 5, 8, 0.01, 'linear'),
+])
+
 # Test for update (backward pass) in Dense_layer
-def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, key, create_activation_factory):
+def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, activation, create_activation_factory):
     # Create a Dense_layer instance
 
     activation_factory = create_activation_factory()
 
-    activation = activation_factory(key)
+    activation = activation_factory(activation)
  
     dense_layer = Dense_layer(input_size, output_size, activation)
 
@@ -73,13 +76,18 @@ def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, 
     assert not torch.allclose(updated_W, initial_W)
     assert not torch.allclose(updated_b, initial_b)
 
+@pytest.mark.parametrize("input_size, rank, output_size, batch_size, activation", [
+    (5, 2, 3, 10, 'relu'),
+    (8, 3, 4, 5, 'relu'),
+    (10, 5, 5, 8, 'linear'),
+])
 
 # Test for forward pass in Vanila_low_rank_layer
-def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_size, key, create_activation_factory):
+def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_size, activation, create_activation_factory):
 
     activation_factory = create_activation_factory()
 
-    activation = activation_factory(key)
+    activation = activation_factory(activation)
 
     # Making a dense layer 
     vanilla_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
@@ -93,12 +101,17 @@ def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_siz
     # Checking if the output dimentions is as expected
     assert output.shape == (batch_size, output_size)
 
+@pytest.mark.parametrize("input_size, rank, output_size, batch_size, learning_rate, activation", [
+    (5, 2, 3, 10, 0.001, 'relu'),
+    (8, 3, 4, 5, 0.0001, 'relu'),
+    (10, 5, 5, 8, 0.01, 'linear'),
+])
 
-def test_Vanilla_low_rank_layer_update(input_size, rank, output_size, batch_size, learning_rate, key, create_activation_factory):
+def test_Vanilla_low_rank_layer_update(input_size, rank, output_size, batch_size, learning_rate, activation, create_activation_factory):
 
     activation_factory = create_activation_factory()
 
-    activation = activation_factory(key)
+    activation = activation_factory(activation)
 
     vanilla_low_rank_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
 
