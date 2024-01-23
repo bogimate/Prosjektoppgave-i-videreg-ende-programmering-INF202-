@@ -23,11 +23,12 @@ class Activation_factory:
             name (nn.Module): The PyTorch activation function
         """
 
-        # Checking if the activation function alredy is in _activation_type. If not, it is added
+        # Checking if the activation function already is in _activation_type. If not, it is added
         if key not in self._function_type:
             self._function_type[key] = name
         
         else: 
+            # Raises a value error when function already excists in _function_type
             raise ValueError(f"{key} activation function already exists.")
 
 
@@ -40,29 +41,15 @@ class Activation_factory:
         Returns:
             torch.nn.Module: The PyTorch activation function.
         """
+        # If you try calling a function that is not in _function_type a KeyError will be raised
         if function not in self._function_type:
             raise KeyError(f"{function} function does not exist in dictionary.")
         else:
+            # Returns the function type if its in the dictionary
             return self._function_type[function]
-        #return self._function_type[function]
+        
 
 
 
-    # def __call__(self, function):
-    #     """
-    #     Retrieves and returns the activation function associated with the provided key.
-    #     Args:
-    #         function (str): The key representing the activation function.
-    #     Returns:
-    #         torch.nn.Module: The PyTorch activation function.
-    #     """
-    #     return self._function_type[function]
 
-# activation = Activation_factory()
-# #act = activation('lin')
-# #print(act)
-
-# activation.register('relu', nn.ReLU())
-# for activation_key, activation_func in activation._function_type.items():
-#     print(f"{activation_key}: {activation_func}")
 
