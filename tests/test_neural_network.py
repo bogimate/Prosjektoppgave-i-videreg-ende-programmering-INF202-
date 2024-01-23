@@ -1,5 +1,5 @@
 import torch
-from src.classes.neural_network import Neural_network
+from classes.neural_network_1 import Neural_network
 
 
 def test_forward_pass():

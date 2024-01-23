@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 from torch.utils.data import DataLoader
 from torchvision import datasets, transforms
-from .neural_network import Neural_network
+from .neural_network_1 import Neural_network
 
 def training_nn(config_layers, lr, batch_size, num_epochs):
     """Load MNIST dataset
