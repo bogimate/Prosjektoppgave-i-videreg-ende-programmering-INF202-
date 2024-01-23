@@ -12,7 +12,7 @@ def create_neural_network():
 @pytest.mark.parametrize("type, dims, activation, lr, rank, expected_output_size",
                          [('dense', [2, 3], 'relu', 0.0001, None, (1, 3)),
                           ('dense', [3, 2], 'sigmoid', 0.001, None, (1, 2)),
-                          ('vanilla_low_rank', [2, 3], 'tanh', 0.0001, 5, (1, 3))])
+                          ('vanilla_low_rank', [2, 3], 'linear', 0.0001, 3, (1, 3))])
 
 
 def test_neural_network_forward(type, dims, activation, lr, rank, expected_output_size, create_neural_network):
