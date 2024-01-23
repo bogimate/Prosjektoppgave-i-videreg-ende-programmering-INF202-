@@ -1,6 +1,5 @@
 import torch
 import torch.nn as nn
-
 from .layers import Dense_layer, Vanilla_low_rank_layer  
 from .activation_factory import Activation_factory       
 
@@ -51,7 +50,7 @@ class Neural_network(nn.Module):
         """
         Z = self._flatten(X)
 
-        # Go over and evaluate all layers in the list self.layers 
+        # Go over and evaluate all layers in the list self._layers 
         for layer in self._layers:
             Z = layer(Z)
         

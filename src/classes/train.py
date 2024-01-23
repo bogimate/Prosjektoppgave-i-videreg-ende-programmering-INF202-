@@ -1,8 +1,7 @@
 import torch
 import torch.nn as nn
 from .neural_network import Neural_network
-# from torch.utils.data import DataLoader
-# from torchvision import datasets, transforms
+
 
 def training_nn(config_settings, config_layers, data_loader_func, output_file='training_info.txt'):
     criterion = nn.CrossEntropyLoss()
@@ -55,7 +54,7 @@ def training_nn(config_settings, config_layers, data_loader_func, output_file='t
                 # Prints and write the information to the output_file
                 print(f'Epoch [{i+1}/{num_epochs}], Validation Accuracy: {100 * accuracy:.2f}%', file=info_file)
                 
-                # saving the values  the 
+                # saving the values
                 # neural_net.save(output_weight_file)
                 neural_net.save(f'model_weights_epoch_{i + 1}.pth')
 
