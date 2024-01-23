@@ -1,6 +1,6 @@
 import torch
 import torch.nn as nn
-from .layers_ortho import Dense_layer, Vanilla_low_rank_layer  
+from .layers import Dense_layer, Vanilla_low_rank_layer  
 from .activation_factory import Activation_factory       
 
 # Defining the neural network architecture
