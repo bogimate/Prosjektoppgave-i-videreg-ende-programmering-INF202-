@@ -8,20 +8,24 @@ from src.classes.activation_factory import Activation_factory
 def create_activation_factory():
     return Activation_factory()
 
-@pytest.mark.parametrize("input_size, output_size, batch_size", [
-    (5, 3, 10),
-    (8, 4, 5),
-    (10, 5, 8),
+@pytest.mark.parametrize("input_size, output_size, batch_size, learning_rate", [
+    (5, 3, 10, 0.001),
+    (8, 4, 5, 0.0001),
+    (10, 5, 8, 0.01),
 ])
 
+@pytest.mark.parametrize("key, function",
+                        ['relu',
+                         'linear'])
+
+
 # Test for forward pass in Dense_layer
-def test_Dense_layer_forward(input_size, output_size, batch_size, create_activation_factory):
+def test_Dense_layer_forward(input_size, output_size, batch_size, key, create_activation_factory):
 
     activation_factory = create_activation_factory
 
-    activation = activation_factory('relu')
+    activation = activation_factory(key)
 
-    # activation = Activation_factory()('relu')
     # Making a dense layer 
     dense_layer = Dense_layer(input_size, output_size, activation)
 
@@ -35,12 +39,13 @@ def test_Dense_layer_forward(input_size, output_size, batch_size, create_activat
     assert output.shape == (batch_size, output_size)
 
 # Test for update (backward pass) in Dense_layer
-def test_Dense_layer_update():
+def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, key, function, create_activation_factory):
     # Create a Dense_layer instance
-    input_size = 5
-    output_size = 3
-    batch_size = 10
-    activation = Activation_factory()('relu')  
+
+    activation_factory = create_activation_factory
+
+    activation = activation_factory(key)
+ 
     dense_layer = Dense_layer(input_size, output_size, activation)
 
     # Generate a random input tensor
@@ -59,8 +64,7 @@ def test_Dense_layer_update():
     loss.backward()
 
     # Perform update
-    lr = 0.001
-    dense_layer.update(lr)
+    dense_layer.update(learning_rate)
 
     # Updating the parameters
     updated_W = dense_layer._W.data
