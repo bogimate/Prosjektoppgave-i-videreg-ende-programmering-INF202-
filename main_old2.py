@@ -2,7 +2,7 @@ import os
 import argparse
 import sys
 from src.classes.read_config import read_config 
-from src.classes.train import training_nn
+from classes.train_2 import training_nn
 
 def parse_input():
     parser = argparse.ArgumentParser(description='Neural Network Training Script')
