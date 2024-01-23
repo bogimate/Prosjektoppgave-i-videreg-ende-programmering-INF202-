@@ -69,12 +69,3 @@ class Neural_network(nn.Module):
         checkpoint = {'state_dict': self._layers.state_dict()}
         torch.save(checkpoint, filename) 
         print(f'Model weights saved to: {filename}')
-    
-    # Function for loading the weights and biases
-    # Reloading the weights and biases to the neural network 
-    # that were previously saved at a certain point
-    def load(self, filename):
-        checkpoint = torch.load(filename)
-        # Using the pre-trained model
-        self._layers.load_state_dict(checkpoint['state_dict'])
-        print(f"Model weights loaded from {filename}")
