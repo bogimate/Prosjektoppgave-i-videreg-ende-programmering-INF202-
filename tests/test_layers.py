@@ -4,9 +4,13 @@ import torch.nn as nn
 from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 from src.classes.activation_factory import Activation_factory
 
+
 @pytest.fixture
 def create_activation_factory():
-    return Activation_factory()
+    def _create_activation_factory(activation_type):
+        return Activation_factory()(activation_type)
+    return _create_activation_factory
+
 
 @pytest.mark.parametrize("input_size, output_size, batch_size, activation", [
     (5, 3, 10, 'relu'),
@@ -18,12 +22,10 @@ def create_activation_factory():
 # Test for forward pass in Dense_layer
 def test_Dense_layer_forward(input_size, output_size, batch_size, activation, create_activation_factory):
 
-    activation_factory = create_activation_factory()
-
-    activation = activation_factory(activation)
+    activation_function = create_activation_factory(activation)
 
     # Making a dense layer 
-    dense_layer = Dense_layer(input_size, output_size, activation)
+    dense_layer = Dense_layer(input_size, output_size, activation_function)
 
     # Generate a random input tensor
     X = torch.randn((batch_size, input_size))
@@ -44,11 +46,9 @@ def test_Dense_layer_forward(input_size, output_size, batch_size, activation, cr
 def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, activation, create_activation_factory):
     # Create a Dense_layer instance
 
-    activation_factory = create_activation_factory()
-
-    activation = activation_factory(activation)
+    activation_function = create_activation_factory(activation)
  
-    dense_layer = Dense_layer(input_size, output_size, activation)
+    dense_layer = Dense_layer(input_size, output_size, activation_function)
 
     # Generate a random input tensor
     X = torch.randn((batch_size, input_size))
@@ -85,12 +85,10 @@ def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, 
 # Test for forward pass in Vanila_low_rank_layer
 def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_size, activation, create_activation_factory):
 
-    activation_factory = create_activation_factory()
-
-    activation = activation_factory(activation)
+    activation_function = create_activation_factory(activation)
 
     # Making a dense layer 
-    vanilla_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
+    vanilla_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation_function)
 
     # Generate a random input tensor
     X = torch.randn((batch_size, input_size))
@@ -109,11 +107,9 @@ def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_siz
 
 def test_Vanilla_low_rank_layer_update(input_size, rank, output_size, batch_size, learning_rate, activation, create_activation_factory):
 
-    activation_factory = create_activation_factory()
+    activation_function = create_activation_factory(activation)
 
-    activation = activation_factory(activation)
-
-    vanilla_low_rank_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation)
+    vanilla_low_rank_layer = Vanilla_low_rank_layer(input_size, rank, output_size, activation_function)
 
     # Generate a random input tensor
     X = torch.randn((batch_size, input_size))
