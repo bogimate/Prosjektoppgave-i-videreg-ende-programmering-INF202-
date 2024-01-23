@@ -43,7 +43,7 @@ def test_read_config_activation():
 
     _, config_layers = read_config(test_config)
 
-    assert config_layers[0]['activation'] == 'sigmoid'
+    assert config_layers[0]['activation'] == 'relu'
 
 
 if __name__ == '__main__':

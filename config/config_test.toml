@@ -10,7 +10,7 @@ numEpochs = 5
 [[layer]]
 type = 'dense'
 dims = [784, 512]
-activation = 'sigmoid'
+activation = 'relu'
 
 
 [[layer]]
