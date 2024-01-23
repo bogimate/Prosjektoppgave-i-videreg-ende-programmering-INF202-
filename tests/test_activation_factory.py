@@ -8,11 +8,10 @@ def create_activation_factory():
     return Activation_factory()
 
 
-@pytest.mark.parametrize("key", "function",[
-    ('LeakyReLU', nn.LeakyReLU),
-    ('selu', nn.SELU),
-    
-])
+@pytest.mark.parametrize("key, function",
+                        [('LeakyReLU', nn.LeakyReLU),
+                         ('selu', nn.SELU)])
+
 def test_activation_factory(create_activation_factory, key, function):
     # Arrange
     activation_factory = create_activation_factory
