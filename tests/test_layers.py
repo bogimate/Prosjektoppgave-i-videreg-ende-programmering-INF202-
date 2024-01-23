@@ -7,11 +7,12 @@ from src.classes.activation_factory import Activation_factory
 def create_activation_factory():
     return Activation_factory()
 
-@pytest.mark.parametrize("input_size, rank, output_size, batch_size, learning_rate", [
-    (5, 2, 3, 10, 0.001),
-    (8, 3, 4, 5, 0.0001),
-    (10, 5, 5, 8, 0.01),
+@pytest.mark.parametrize("input_size, output_size, batch_size, learning_rate", [
+    (5, 3, 10, 0.001),
+    (8, 4, 5, 0.0001),
+    (10, 5, 8, 0.01),
 ])
+
 
 @pytest.mark.parametrize("key",
                         ['relu',
@@ -73,6 +74,11 @@ def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, 
     assert not torch.allclose(updated_W, initial_W)
     assert not torch.allclose(updated_b, initial_b)
 
+@pytest.mark.parametrize("input_size, rank, output_size, batch_size, learning_rate", [
+    (5, 2, 3, 10, 0.001),
+    (8, 3, 4, 5, 0.0001),
+    (10, 5, 5, 8, 0.01),
+])
 
 # Test for forward pass in Vanila_low_rank_layer
 def test_vanilla_low_rank_layer_forward(input_size, rank, output_size, batch_size, key, create_activation_factory):
