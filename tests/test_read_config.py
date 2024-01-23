@@ -3,47 +3,47 @@ from src.classes.read_config import read_config
 
 
 def test_read_config_lr():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     config_settings, _ = read_config(test_config)
 
-    # Asserting that the learningrate key is present in the config_settings dictionary
-    assert 'learningRate' in config_settings
+    # Asserting that the 'learningRate' value is equal to 0.001
+    assert config_settings['learningRate'] == 0.001
 
 def test_read_config_batchsize():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     config_settings, _ = read_config(test_config)
 
-    assert 'batchSize' in config_settings
+    assert config_settings['batchSize'] == 64
 
 def test_read_config_numepochs():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     config_settings, _ = read_config(test_config)
 
-    assert 'numEpochs' in config_settings
+    assert config_settings['numEpochs'] == 5
 
 def test_read_config_type():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     _, config_layers = read_config(test_config)
 
-    assert 'type' in config_layers[0]
+    assert config_layers[0]['type'] == 'dense'
 
 def test_read_config_dims():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     _, config_layers = read_config(test_config)
 
-    assert 'dims' in config_layers[0]
+    assert config_layers[0]['dims'] == [784, 512]
 
 def test_read_config_activation():
-    test_config = "config/our_config.toml"
+    test_config = "config/config_test.toml"
 
     _, config_layers = read_config(test_config)
 
-    assert 'activation' in config_layers[0]
+    assert config_layers[0]['activation'] == 'sigmoid'
 
 
 if __name__ == '__main__':
