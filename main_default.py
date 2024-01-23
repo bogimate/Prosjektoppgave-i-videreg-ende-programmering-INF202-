@@ -11,17 +11,25 @@ def parse_input():
     parser.add_argument('-d', '--folder', help='Specify the folder containing config files')
     parser.add_argument('-f', '--file', help='Specify a specific config file')
     parser.add_argument('-o', '--output', help='Specify the output file or folder to store results')
+    parser.add_argument('-r', '--run', action='store_true', help='Runs the softwere on a default file')
     
     # Parse the command-line arguments
     args = parser.parse_args()
 
-    return args.folder, args.file, args.output
+    return args.folder, args.file, args.output, args.run
 
 
 if __name__ == "__main__":
-    folder, file, output_file = parse_input()
+    folder, file, output_file, run = parse_input()
 
-    if folder:
+    if run:
+        # If -r is provided, use the default config file
+        config_settings, config_layers = read_config("config/config.toml")
+        
+        # Run training and store results
+        training_nn(config_settings, config_layers, load_MNIST, output_file=output_file)
+
+    elif folder:
         # If folder is provided, process all files in the folder
         folder_path = os.path.abspath(folder)
         for filename in os.listdir(folder_path):
@@ -46,8 +54,10 @@ if __name__ == "__main__":
         # Run training and store results
         training_nn(config_settings, config_layers, load_MNIST, output_file=output_file)
 
-    else:
+
+    else:       
         print("You will now be presented with some options:")
+        print("  For running default file, write: python main.py -r (or --run)")
         print("  For running multiple files in a folder, write: python main.py -d (or --folder) path")
         print("  For running one file in a folder, write: python main.py -f (or --file) path/file_name.toml")
         print("  For saving the results, write: python main.py -f (or --file) path/file_name.toml -o (or --output) save_info.txt")
