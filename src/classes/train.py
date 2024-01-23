@@ -86,3 +86,4 @@ def training_nn(config_settings, config_layers, data_loader_func, output_file='t
 
             accuracy = correct / total
             print(f'Epoch [{i + 1}/{num_epochs}], Validation Accuracy: {100 * accuracy:.2f}%')
+            
