@@ -1,6 +1,5 @@
 import pytest
 import torch
-import torch.nn as nn
 from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 from src.classes.activation_factory import Activation_factory
 
