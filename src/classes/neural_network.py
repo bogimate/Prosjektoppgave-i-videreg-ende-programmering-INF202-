@@ -11,13 +11,13 @@ class Neural_network(nn.Module):
         Args:
             layer_config: a list of dictionaries, each specifying the type of layer, input size, 
             output size and activation function for that layer. 
-            lr: learingrate
+            lr: learningrate
         """
         super(Neural_network, self).__init__()
         self._flatten = nn.Flatten()           # Resize input
-        self._lr = lr                          # Default value for learingrate 
+        self._lr = lr                          # Default value for learningrate 
 
-        # Create an instance of Neural_network and directly use the activation functions from the Activation class
+        # Create an instance of the activation class
         activate_factory = Activation_factory()
         # The register function needs an instance to work
 
@@ -59,7 +59,7 @@ class Neural_network(nn.Module):
     
     # Function for updating the layers
     def update(self):
-        # Calls the update methode for each layer
+        # Calls the update method for each layer
         for layer in self._layers:
             layer.update(self._lr)
 
