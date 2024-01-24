@@ -14,8 +14,10 @@ class Dense_layer(nn.Module):
     def forward(self, X):
         """
         Returns the output of the layer. 
-            Args:    X - input to layer
-            Returns: output of layer
+        Args:    
+            X - input to layer
+        Returns: 
+            output of layer
         """
         # Perform linear transformation
         output = torch.matmul(X, self._W) + self._b
@@ -50,8 +52,10 @@ class Vanilla_low_rank_layer(nn.Module):
     def forward(self, X):
         """
         Returns the output of the layer. 
-            Args:    X - input to layer
-            Returns: output of layer
+        Args:
+            X - input to layer
+        Returns: 
+            output of layer
         """
 
         # Perform linear transformation
@@ -77,6 +81,6 @@ class Vanilla_low_rank_layer(nn.Module):
         self._b.grad.zero_()
 
     def orthogonalize(self):
-        # Appling QR-decomposition to make U and V orthonormal
+        # Applying QR-decomposition to make U and V orthogonal
         self._U.data, _ = torch.linalg.qr(self._U.data, 'reduced')
         self._V.data, _ = torch.linalg.qr(self._V.data, 'reduced')
