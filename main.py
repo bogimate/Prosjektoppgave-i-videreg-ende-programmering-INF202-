@@ -61,5 +61,3 @@ if __name__ == "__main__":
         print("  For running one file in a folder, write: python main.py -f (or --file) path/file_name.toml")
         print("  For saving the results, write: python main.py -f (or --file) path/file_name.toml -o (or --output) save_info.txt")
         print()
-
-    
