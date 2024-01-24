@@ -1,6 +1,6 @@
 # Example configuration file
 [settings]
-learningRate = 0.0001
+learningRate = 0.001
 batchSize = 64
 numEpochs = 6
 
@@ -10,7 +10,7 @@ numEpochs = 6
 [[layer]]
 type = 'dense'
 dims = [784, 512]
-activation = 'relu'
+activation = 'softmax'
 
 
 [[layer]]
