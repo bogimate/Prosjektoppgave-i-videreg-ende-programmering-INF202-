@@ -35,6 +35,7 @@ def test_neural_network_forward(type, dims, activation, lr, rank, expected_outpu
     ('dense', [3, 2], 'sigmoid', 0.001, None),
     ('vanilla_low_rank', [3, 4], 'tanh', 0.0001, 3)])
 
+
 def test_neural_network_update(type, dims, activation, lr, rank, create_neural_network):
     # Arrange
     layer_configs = [{'type': type, 'dims': dims, 'activation': activation, 'rank': rank}]
@@ -46,13 +47,10 @@ def test_neural_network_update(type, dims, activation, lr, rank, create_neural_n
     output = neural_net(input_tensor)
 
     # Act
-    neural_net.update()
+    updated_neural_net = neural_net.update()
 
-    # Assert
-    for layer in neural_net._layers:
-        assert layer._W.grad is not None  # Check if _W has gradients
-        assert layer._b.grad is not None  # Check if _b has gradients
-
+    for old_layer, updated_layer in output, updated_neural_net:
+        assert old_layer == updated_layer
 
 
 if __name__ == '__main__':
