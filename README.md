@@ -7,17 +7,17 @@ Then go to main.py and run the code from there. A default config file will be pr
 
 How to run a folder of config files:
     python main.py -d filepath
-    python main.py –folder filepath
+    python main.py –-folder filepath
 
 How to run a specific config file:
-    python main.py -f filepath\config_name.toml
-    python main.py –file filepath\config_name.tom
+    python main.py -f filepath/config_name.toml
+    python main.py –-file filepath/config_name.tom
 
 The loss and accuracy will be printed in the terminal in real time. Another possibility is
 to save the loss, accuracy and the models parameters instead of getting it printed.
 How to save loss and accuracy for one file:
-    python main.py –f filepath\config_name.toml -o save_name.txt
-    python main.py –file filepath\config_name.toml -output save_results.txt
+    python main.py –f filepath/config_name.toml -o save_name.txt
+    python main.py –-file filepath/config_name.toml --output save_results.txt
 
 # HOW TO:
 # Add activation functions
