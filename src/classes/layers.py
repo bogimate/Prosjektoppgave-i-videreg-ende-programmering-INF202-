@@ -14,8 +14,10 @@ class Dense_layer(nn.Module):
     def forward(self, X):
         """
         Returns the output of the layer. 
-            Args:    X - input to layer
-            Returns: output of layer
+        Args:    
+            X - input to layer
+        Returns: 
+            output of layer
         """
         # Perform linear transformation
         output = torch.matmul(X, self._W) + self._b
@@ -50,8 +52,10 @@ class Vanilla_low_rank_layer(nn.Module):
     def forward(self, X):
         """
         Returns the output of the layer. 
-            Args:    X - input to layer
-            Returns: output of layer
+        Args:
+            X - input to layer
+        Returns: 
+            output of layer
         """
 
         # Perform linear transformation

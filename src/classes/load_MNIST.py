@@ -5,6 +5,10 @@ def load_MNIST(batch_size):
     """
     Load MNIST dataset
     A dataset of handwritten digits
+    Args:
+        batch_size: Size of batch
+    Returns:
+        trainloader and testloader
     """
     transform = transforms.Compose([transforms.ToTensor(), transforms.Normalize((0.5,), (0.5,))])
 
