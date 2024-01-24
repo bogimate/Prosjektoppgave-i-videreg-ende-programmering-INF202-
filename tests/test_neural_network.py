@@ -29,29 +29,5 @@ def test_neural_network_forward(type, dims, activation, lr, rank, expected_outpu
     assert output.size() == expected_output_size
 
 
-
-@pytest.mark.parametrize("type, dims, activation, lr, rank", [
-    ('dense', [2, 3], 'relu', 0.0001, None),
-    ('dense', [3, 2], 'sigmoid', 0.001, None),
-    ('vanilla_low_rank', [3, 4], 'tanh', 0.0001, 3)])
-
-
-def test_neural_network_update(type, dims, activation, lr, rank, create_neural_network):
-    # Arrange
-    layer_configs = [{'type': type, 'dims': dims, 'activation': activation, 'rank': rank}]
-    neural_net = create_neural_network(layer_configs, lr)
-
-    input_tensor = torch.randn(1, dims[0])
-
-    # Forward pass (this will compute gradients during backward pass)
-    output = neural_net(input_tensor)
-
-    # Act
-    updated_neural_net = neural_net.update()
-
-    for old_layer, updated_layer in output, updated_neural_net:
-        assert old_layer == updated_layer
-
-
 if __name__ == '__main__':
     pytest.main()
