@@ -2,7 +2,7 @@
 [settings]
 learningRate = 0.01
 batchSize = 64
-numEpochs = 5
+numEpochs = 8
 
 # define network architecture
 # possible layer types are 'dense', 'lowRank', and 'vanillaLowRank'
