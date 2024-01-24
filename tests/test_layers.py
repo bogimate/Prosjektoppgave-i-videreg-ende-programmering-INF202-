@@ -1,6 +1,5 @@
 import pytest
 import torch
-import torch.nn as nn
 from src.classes.layers import Dense_layer, Vanilla_low_rank_layer
 from src.classes.activation_factory import Activation_factory
 
@@ -35,6 +34,7 @@ def test_Dense_layer_forward(input_size, output_size, batch_size, activation, cr
 
     # Checking if the output dimentions is as expected
     assert output.shape == (batch_size, output_size)
+
 
 @pytest.mark.parametrize("input_size, output_size, batch_size, learning_rate, activation", [
     (5, 3, 10, 0.001, 'relu'),
@@ -75,6 +75,7 @@ def test_Dense_layer_update(input_size, output_size, batch_size, learning_rate, 
     # Check if the parameters have been updated using torch.allclose
     assert not torch.allclose(updated_W, initial_W)
     assert not torch.allclose(updated_b, initial_b)
+
 
 @pytest.mark.parametrize("input_size, rank, output_size, batch_size, activation", [
     (5, 2, 3, 10, 'relu'),
@@ -142,6 +143,3 @@ def test_Vanilla_low_rank_layer_update(input_size, rank, output_size, batch_size
     assert not torch.allclose(updated_V, initial_V)
     assert not torch.allclose(updated_b, initial_b)
 
-
-if __name__ == '__main__':
-    pytest.main()

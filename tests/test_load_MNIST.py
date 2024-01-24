@@ -1,4 +1,3 @@
-import pytest
 from src.classes.load_MNIST import load_MNIST
 
 def test_load_MNIST_trainloader():
@@ -12,6 +11,3 @@ def test_load_MNIST_testloader():
     _, testloader = load_MNIST(batch_size)
 
     assert testloader is not None
-
-if __name__ == '__main__':
-    pytest.main()

@@ -27,7 +27,3 @@ def test_neural_network_forward(type, dims, activation, lr, rank, expected_outpu
 
     # Assert
     assert output.size() == expected_output_size
-
-
-if __name__ == '__main__':
-    pytest.main()
