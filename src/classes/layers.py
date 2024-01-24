@@ -12,10 +12,11 @@ class Dense_layer(nn.Module):
         self.activation = activation # Assigning the activation function 
  
     def forward(self, X):
-        # Returns the output of the layer. 
-            # Args:    X - input to layer
-            # Returns: output of layer
-
+        """
+        Returns the output of the layer. 
+            Args:    X - input to layer
+            Returns: output of layer
+        """
         # Perform linear transformation
         output = torch.matmul(X, self._W) + self._b
         # Apply activation function
@@ -47,17 +48,17 @@ class Vanilla_low_rank_layer(nn.Module):
         self.orthogonalize()
 
     def forward(self, X):
-        # Returns the output of the layer. 
-            # Args:    X - input to layer
-            # Returns: output of layer
+        """
+        Returns the output of the layer. 
+            Args:    X - input to layer
+            Returns: output of layer
+        """
 
         # Perform linear transformation
         step_1 = torch.matmul(X, self._U)
         step_2 = torch.matmul(step_1, self._S)
         step_3 = torch.matmul(step_2, self._V.T)
         output = step_3 + self._b
-
-        # output = torch.matmul(torch.matmul(torch.matmul(X, self._U), self._S), self._V) + self._b
         
         # Apply activation function
         activated_output = self.activation(output)
