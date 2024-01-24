@@ -1,0 +1,100 @@
+Epoch [1/10], Step [100/938], Loss: 1.7571
+Epoch [1/10], Step [200/938], Loss: 1.0700
+Epoch [1/10], Step [300/938], Loss: 0.9853
+Epoch [1/10], Step [400/938], Loss: 0.9870
+Epoch [1/10], Step [500/938], Loss: 1.0021
+Epoch [1/10], Step [600/938], Loss: 0.2921
+Epoch [1/10], Step [700/938], Loss: 0.6506
+Epoch [1/10], Step [800/938], Loss: 0.8516
+Epoch [1/10], Step [900/938], Loss: 0.6689
+Epoch [1/10], Validation Accuracy: 79.22%
+Epoch [2/10], Step [100/938], Loss: 0.3977
+Epoch [2/10], Step [200/938], Loss: 0.4481
+Epoch [2/10], Step [300/938], Loss: 0.6818
+Epoch [2/10], Step [400/938], Loss: 0.6012
+Epoch [2/10], Step [500/938], Loss: 0.3975
+Epoch [2/10], Step [600/938], Loss: 0.3239
+Epoch [2/10], Step [700/938], Loss: 0.5795
+Epoch [2/10], Step [800/938], Loss: 0.3387
+Epoch [2/10], Step [900/938], Loss: 0.4070
+Epoch [2/10], Validation Accuracy: 85.72%
+Epoch [3/10], Step [100/938], Loss: 0.5251
+Epoch [3/10], Step [200/938], Loss: 0.4408
+Epoch [3/10], Step [300/938], Loss: 0.5247
+Epoch [3/10], Step [400/938], Loss: 0.4429
+Epoch [3/10], Step [500/938], Loss: 0.3775
+Epoch [3/10], Step [600/938], Loss: 0.1686
+Epoch [3/10], Step [700/938], Loss: 0.3939
+Epoch [3/10], Step [800/938], Loss: 0.5264
+Epoch [3/10], Step [900/938], Loss: 0.2136
+Epoch [3/10], Validation Accuracy: 86.89%
+Epoch [4/10], Step [100/938], Loss: 0.3800
+Epoch [4/10], Step [200/938], Loss: 0.4603
+Epoch [4/10], Step [300/938], Loss: 0.5037
+Epoch [4/10], Step [400/938], Loss: 0.4953
+Epoch [4/10], Step [500/938], Loss: 0.2699
+Epoch [4/10], Step [600/938], Loss: 0.3519
+Epoch [4/10], Step [700/938], Loss: 0.2784
+Epoch [4/10], Step [800/938], Loss: 0.3636
+Epoch [4/10], Step [900/938], Loss: 0.4138
+Epoch [4/10], Validation Accuracy: 88.81%
+Epoch [5/10], Step [100/938], Loss: 0.5135
+Epoch [5/10], Step [200/938], Loss: 0.2915
+Epoch [5/10], Step [300/938], Loss: 0.2003
+Epoch [5/10], Step [400/938], Loss: 0.3375
+Epoch [5/10], Step [500/938], Loss: 0.2517
+Epoch [5/10], Step [600/938], Loss: 0.5073
+Epoch [5/10], Step [700/938], Loss: 0.3515
+Epoch [5/10], Step [800/938], Loss: 0.3777
+Epoch [5/10], Step [900/938], Loss: 0.1299
+Epoch [5/10], Validation Accuracy: 87.54%
+Epoch [6/10], Step [100/938], Loss: 0.5006
+Epoch [6/10], Step [200/938], Loss: 0.2353
+Epoch [6/10], Step [300/938], Loss: 0.2807
+Epoch [6/10], Step [400/938], Loss: 0.3208
+Epoch [6/10], Step [500/938], Loss: 0.3885
+Epoch [6/10], Step [600/938], Loss: 0.3153
+Epoch [6/10], Step [700/938], Loss: 0.2026
+Epoch [6/10], Step [800/938], Loss: 0.4824
+Epoch [6/10], Step [900/938], Loss: 0.4382
+Epoch [6/10], Validation Accuracy: 90.30%
+Epoch [7/10], Step [100/938], Loss: 0.3527
+Epoch [7/10], Step [200/938], Loss: 0.0743
+Epoch [7/10], Step [300/938], Loss: 0.2381
+Epoch [7/10], Step [400/938], Loss: 0.2297
+Epoch [7/10], Step [500/938], Loss: 0.3269
+Epoch [7/10], Step [600/938], Loss: 0.2213
+Epoch [7/10], Step [700/938], Loss: 0.4449
+Epoch [7/10], Step [800/938], Loss: 0.1961
+Epoch [7/10], Step [900/938], Loss: 0.2905
+Epoch [7/10], Validation Accuracy: 90.31%
+Epoch [8/10], Step [100/938], Loss: 0.3781
+Epoch [8/10], Step [200/938], Loss: 0.3157
+Epoch [8/10], Step [300/938], Loss: 0.1981
+Epoch [8/10], Step [400/938], Loss: 0.2286
+Epoch [8/10], Step [500/938], Loss: 0.1886
+Epoch [8/10], Step [600/938], Loss: 0.3146
+Epoch [8/10], Step [700/938], Loss: 0.1905
+Epoch [8/10], Step [800/938], Loss: 0.1464
+Epoch [8/10], Step [900/938], Loss: 0.0826
+Epoch [8/10], Validation Accuracy: 91.18%
+Epoch [9/10], Step [100/938], Loss: 0.1870
+Epoch [9/10], Step [200/938], Loss: 0.1984
+Epoch [9/10], Step [300/938], Loss: 0.2123
+Epoch [9/10], Step [400/938], Loss: 0.1328
+Epoch [9/10], Step [500/938], Loss: 0.5196
+Epoch [9/10], Step [600/938], Loss: 0.2382
+Epoch [9/10], Step [700/938], Loss: 0.1293
+Epoch [9/10], Step [800/938], Loss: 0.3810
+Epoch [9/10], Step [900/938], Loss: 0.1304
+Epoch [9/10], Validation Accuracy: 91.20%
+Epoch [10/10], Step [100/938], Loss: 0.0839
+Epoch [10/10], Step [200/938], Loss: 0.2686
+Epoch [10/10], Step [300/938], Loss: 0.2418
+Epoch [10/10], Step [400/938], Loss: 0.2690
+Epoch [10/10], Step [500/938], Loss: 0.2092
+Epoch [10/10], Step [600/938], Loss: 0.3241
+Epoch [10/10], Step [700/938], Loss: 0.1482
+Epoch [10/10], Step [800/938], Loss: 0.2478
+Epoch [10/10], Step [900/938], Loss: 0.1612
+Epoch [10/10], Validation Accuracy: 91.49%
