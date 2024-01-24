@@ -47,9 +47,3 @@ class Activation_factory:
         else:
             # Returns the function type if its in the dictionary
             return self._function_type[function]
-        
-
-
-
-
-

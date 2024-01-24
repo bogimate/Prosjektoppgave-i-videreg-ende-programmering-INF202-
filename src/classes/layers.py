@@ -77,6 +77,6 @@ class Vanilla_low_rank_layer(nn.Module):
         self._b.grad.zero_()
 
     def orthogonalize(self):
-        # Appling QR-decomposition to make U and V orthonormal
+        # Applying QR-decomposition to make U and V orthogonal
         self._U.data, _ = torch.linalg.qr(self._U.data, 'reduced')
         self._V.data, _ = torch.linalg.qr(self._V.data, 'reduced')
