@@ -26,4 +26,4 @@ Create an instence of the Activation factory:
 Adding the new activation function:
     activation_factory.register('new_activation_function', nn.New_activation_function())
 Note that this statement takes a key and a name, meaning string and PyTorch function from PyTorch.nn. 
-If it allready exists, the code will raise a ValueError.
+If it already exists, the code will raise a ValueError.
